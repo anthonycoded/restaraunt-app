@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 import yelp from "../api/yelp";
 import SearchBar from "../components/SearchBar";
@@ -50,18 +50,20 @@ const SearchScreen = () => {
         onSubmit={() => submit(query)}
       ></SearchBar>
       {errorMsg ? <Text>{errorMsg}</Text> : null}
-      <ResultsList
-        results={filterResults("$")}
-        title="Cost Effective"
-      ></ResultsList>
-      <ResultsList
-        results={filterResults("$$")}
-        title="Bit Pricier"
-      ></ResultsList>
-      <ResultsList
-        results={filterResults("$$$")}
-        title="Big Spender"
-      ></ResultsList>
+      <ScrollView>
+        <ResultsList
+          results={filterResults("$")}
+          title="Cost Effective"
+        ></ResultsList>
+        <ResultsList
+          results={filterResults("$$")}
+          title="Bit Pricier"
+        ></ResultsList>
+        <ResultsList
+          results={filterResults("$$$")}
+          title="Big Spender"
+        ></ResultsList>
+      </ScrollView>
     </View>
   );
 };
