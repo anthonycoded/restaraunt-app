@@ -5,10 +5,12 @@ import yelp from "../api/yelp";
 import SearchBar from "../components/SearchBar";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
+
+  console.log(navigation);
 
   /////FILTER RESUTS BY PRICE
   const filterResults = (price) => {
@@ -54,14 +56,17 @@ const SearchScreen = () => {
         <ResultsList
           results={filterResults("$")}
           title="Cost Effective"
+          navigation={navigation}
         ></ResultsList>
         <ResultsList
           results={filterResults("$$")}
           title="Bit Pricier"
+          navigation={navigation}
         ></ResultsList>
         <ResultsList
           results={filterResults("$$$")}
           title="Big Spender"
+          navigation={navigation}
         ></ResultsList>
       </ScrollView>
     </View>
