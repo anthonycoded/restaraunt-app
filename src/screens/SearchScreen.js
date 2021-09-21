@@ -5,12 +5,10 @@ import yelp from "../api/yelp";
 import SearchBar from "../components/SearchBar";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
-
-  console.log(navigation);
 
   /////FILTER RESUTS BY PRICE
   const filterResults = (price) => {
@@ -31,8 +29,6 @@ const SearchScreen = ({ navigation }) => {
         },
       });
       let data = response.data;
-
-      console.log(data.businesses);
       setResults(data.businesses);
     } catch (error) {
       setErrorMsg("Something went wrong. Try again later");
@@ -56,17 +52,14 @@ const SearchScreen = ({ navigation }) => {
         <ResultsList
           results={filterResults("$")}
           title="Cost Effective"
-          navigation={navigation}
         ></ResultsList>
         <ResultsList
           results={filterResults("$$")}
           title="Bit Pricier"
-          navigation={navigation}
         ></ResultsList>
         <ResultsList
           results={filterResults("$$$")}
           title="Big Spender"
-          navigation={navigation}
         ></ResultsList>
       </ScrollView>
     </View>
